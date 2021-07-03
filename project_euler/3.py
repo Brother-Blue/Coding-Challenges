@@ -6,10 +6,19 @@ import math
 
 # Checks if a number is considered prime
 def is_prime(num):
-    for i in range(2, math.floor(math.sqrt(num))):
-        if num % i == 0:
-            return False
-    return True
+    # Quick checks
+    if num == 2 or num == 3: return True
+    if num < 2 or num % 2 == 0: return False
+    if num < 9: return True
+    if num % 3 == 0: return False
+
+    cur = 5
+    end = int(num**0.5)
+    while cur <= end:
+        if num % cur == 0: return False
+        if num % (cur+2) == 0: return False
+        cur += 6
+    return True 
 
 # Iterates through [3-n]
 def find_largest_prime_factor(num):
