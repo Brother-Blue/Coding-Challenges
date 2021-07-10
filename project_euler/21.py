@@ -19,11 +19,11 @@ def find_divisors_for(num):
 def find_amicable_numbers(bound):
     amicable_numbers = []
     for a in range(bound + 1):
+        # Skip if a is in the list since the method finds pairs
+        if (a in amicable_numbers): continue
         b = sum(find_divisors_for(a))
         # d(a) = b && d(b) = a, where a ≠ b
-        if sum(find_divisors_for(b)) == a \
-            and a != b \
-            and (a and b not in amicable_numbers):
+        if sum(find_divisors_for(b)) == a and a != b:
             amicable_numbers += [a, b]
     # print(amicable_numbers)
     print(sum(amicable_numbers))
